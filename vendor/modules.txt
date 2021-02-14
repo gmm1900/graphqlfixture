@@ -1,0 +1,46 @@
+# github.com/Jeffail/gabs/v2 v2.6.0
+## explicit
+github.com/Jeffail/gabs/v2
+# github.com/davecgh/go-spew v1.1.0
+github.com/davecgh/go-spew/spew
+# github.com/gmm1900/gopointer v1.0.0
+## explicit
+github.com/gmm1900/gopointer
+# github.com/gmm1900/graphqlclient v0.1.0
+## explicit
+github.com/gmm1900/graphqlclient
+# github.com/google/go-cmp v0.5.4
+## explicit
+github.com/google/go-cmp/cmp
+github.com/google/go-cmp/cmp/cmpopts
+github.com/google/go-cmp/cmp/internal/diff
+github.com/google/go-cmp/cmp/internal/flags
+github.com/google/go-cmp/cmp/internal/function
+github.com/google/go-cmp/cmp/internal/value
+# github.com/graphql-go/graphql v0.7.9
+## explicit
+github.com/graphql-go/graphql/gqlerrors
+github.com/graphql-go/graphql/language/ast
+github.com/graphql-go/graphql/language/kinds
+github.com/graphql-go/graphql/language/lexer
+github.com/graphql-go/graphql/language/location
+github.com/graphql-go/graphql/language/parser
+github.com/graphql-go/graphql/language/source
+# github.com/hashicorp/errwrap v1.0.0
+github.com/hashicorp/errwrap
+# github.com/hashicorp/go-multierror v1.1.0
+## explicit
+github.com/hashicorp/go-multierror
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/testify v1.7.0
+## explicit
+github.com/stretchr/testify/assert
+# golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
+golang.org/x/xerrors
+golang.org/x/xerrors/internal
+# gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+gopkg.in/yaml.v3
