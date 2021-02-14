@@ -1,0 +1,60 @@
+- table:
+    schema: public
+    name: instructors
+  array_relationships:
+  - name: teaches
+    using:
+      foreign_key_constraint_on:
+        column: instructor_id
+        table:
+          schema: public
+          name: teaches
+- table:
+    schema: public
+    name: students
+  array_relationships:
+  - name: studies
+    using:
+      foreign_key_constraint_on:
+        column: student_id
+        table:
+          schema: public
+          name: studies
+- table:
+    schema: public
+    name: studies
+  object_relationships:
+  - name: student
+    using:
+      foreign_key_constraint_on: student_id
+  - name: subject
+    using:
+      foreign_key_constraint_on: subject_id
+- table:
+    schema: public
+    name: subjects
+  array_relationships:
+  - name: studied_by
+    using:
+      foreign_key_constraint_on:
+        column: subject_id
+        table:
+          schema: public
+          name: studies
+  - name: taught_by
+    using:
+      foreign_key_constraint_on:
+        column: subject_id
+        table:
+          schema: public
+          name: teaches
+- table:
+    schema: public
+    name: teaches
+  object_relationships:
+  - name: instructor
+    using:
+      foreign_key_constraint_on: instructor_id
+  - name: subject
+    using:
+      foreign_key_constraint_on: subject_id
