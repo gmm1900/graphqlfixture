@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: "example"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - 5432:5432
+    networks:
+      - graphql-fixture-example
+
+  hasura-server:
+    image: hasura/graphql-engine:v1.3.2.cli-migrations-v2
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: "postgres://example:@db:5432/example?sslmode=disable"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ADMIN_SECRET: "adminsecret"
+      HASURA_GRAPHQL_ENABLE_TELEMETRY: "false"
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "public"
+      # If enabled, the server sends numeric types which do not fit into IEEE 754 binary64 (double precision) range as String
+      # - https://github.com/hasura/graphql-engine/issues/1523
+      HASURA_GRAPHQL_STRINGIFY_NUMERIC_TYPES: "true"
+    volumes:
+      - ./hasura/migrations:/hasura-migrations
+      - ./hasura/metadata:/hasura-metadata
+    networks:
+      - graphql-fixture-example
+
+  example:
+    image: golang:1.15.2-alpine3.12
+    depends_on:
+      - hasura-server
+    working_dir: /go/src/github.com/gmm1900/graphqlfixture/example
+    command:
+      [ "sh", "-c", "go run main.go" ]
+    volumes:
+      - ..:/go/src/github.com/gmm1900/graphqlfixture
+      - go-build-cache:/root/.cache/go-build
+    networks:
+      - graphql-fixture-example
+
+volumes:
+  go-build-cache:
+    name: graphql-fixture-example-go-build-cache
+
+networks:
+  graphql-fixture-example:
